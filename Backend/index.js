@@ -11,6 +11,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({
+    origin: process.env.FRONTEND_URL
+  }));
+
 app.use('/notes', require('./src/routes/note.route'));
 app.use('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to the Notes API' });
