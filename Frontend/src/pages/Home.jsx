@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 
 function Home() {
   const [notes, setNotes] = useState([]);
+  const apiUrl = import.meta.env.VITE_API_URL;  // Ambil URL dari .env
 
   const fetchNotes = async () => {
-    const res = await fetch('http://localhost:4000/notes');
+    const res = await fetch(`${apiUrl}/notes`);
     const data = await res.json();
     setNotes(data.payload);
   };
 
   const deleteNote = async (id) => {
-    await fetch(`http://localhost:4000/notes/${id}`, { method: 'DELETE' });
+    await fetch(`${apiUrl}/notes/${id}`, { method: 'DELETE' });
     fetchNotes();
   };
 

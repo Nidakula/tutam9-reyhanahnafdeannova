@@ -5,10 +5,11 @@ function CreateNote() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;  // Ambil URL dari .env
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch('http://localhost:4000/notes', {
+    await fetch(`${apiUrl}/notes`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, content })
